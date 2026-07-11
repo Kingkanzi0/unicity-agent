@@ -1,0 +1,17 @@
+{
+  "name": "unicity-agent-demo",
+  "version": "1.0.0",
+  "description": "Autonomous agent demo for the Unicity Sphere Quests testnet (Call for Builders).",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "node scripts/fix-nostr-sdk.js"
+  },
+  "dependencies": {
+    "@unicitylabs/sphere-sdk": "latest",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ws": "^8.17.0"
+  }
+}

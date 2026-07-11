@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unicity Autonomous Agent — Demo Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🤖 Autonomous Agent Dashboard</h1>
+    <p class="sub">Sphere Quests testnet demo — Autonomous Agents / Payments + Markets / Social + Messaging</p>
+  </header>
+
+  <section class="card" id="status-card">
+    <h2>Agent Identity</h2>
+    <div id="status">Loading…</div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Send the agent a DM</h2>
+      <p class="hint">DM it from your own Sphere wallet using the nametag above, or trigger a test DM here.</p>
+      <input id="dm-recipient" placeholder="Recipient nametag, e.g. @alice" />
+      <textarea id="dm-message" placeholder="Message, e.g. what's your price?"></textarea>
+      <button onclick="sendDm()">Send DM</button>
+      <div class="result" id="dm-result"></div>
+    </div>
+
+    <div class="card">
+      <h2>Request a payment</h2>
+      <p class="hint">Agent sends a payment request to another Unicity ID.</p>
+      <input id="pay-recipient" placeholder="Recipient nametag, e.g. @alice" />
+      <input id="pay-amount" type="number" step="0.1" placeholder="Amount in UCT" />
+      <button onclick="requestPayment()">Send Payment Request</button>
+      <div class="result" id="pay-result"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Live Activity Log</h2>
+    <div id="log"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
