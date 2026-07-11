@@ -76,3 +76,11 @@ button:hover { opacity: 0.9; }
 }
 #status .row { margin: 4px 0; }
 #status .k { color: var(--muted); display: inline-block; width: 140px; }
+label.hint { display: block; margin-bottom: 4px; }
+code {
+  background: #0f0f12;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+}

@@ -42,6 +42,34 @@
     <div id="log"></div>
   </section>
 
+  <section class="card" id="connect-card">
+    <h2>Connect Your Sphere Wallet</h2>
+    <p class="hint">
+      Connect your own Sphere wallet to interact with this agent directly — no separate setup needed.
+      Only <code>identity:read</code>, <code>dm:request</code> and <code>payment:request</code> are requested;
+      the agent can never move funds out of your wallet or sign anything on your behalf.
+    </p>
+    <div id="connect-status">Checking for a Sphere wallet…</div>
+    <button id="connect-btn">Connect Sphere Wallet</button>
+
+    <div id="connect-actions" style="display:none; margin-top:16px;">
+      <form id="connect-dm-form">
+        <label class="hint" for="connect-dm-message">Message the agent</label>
+        <textarea id="connect-dm-message" placeholder="e.g. what's your price?" required></textarea>
+        <button type="submit">Send DM via my wallet</button>
+        <div class="result" id="connect-dm-result"></div>
+      </form>
+
+      <form id="connect-pay-form" style="margin-top:16px;">
+        <label class="hint" for="connect-pay-amount">Request a payment from the agent (UCT)</label>
+        <input id="connect-pay-amount" type="number" step="0.1" min="0" placeholder="e.g. 2" required />
+        <button type="submit">Request payment via my wallet</button>
+        <div class="result" id="connect-pay-result"></div>
+      </form>
+    </div>
+  </section>
+
   <script src="app.js"></script>
+  <script type="module" src="connect.js"></script>
 </body>
 </html>
