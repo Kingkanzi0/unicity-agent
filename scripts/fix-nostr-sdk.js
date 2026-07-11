@@ -7,8 +7,11 @@
 //
 // This script writes the missing override file after every `npm install`.
 // If a future SDK release fixes this upstream, this becomes a harmless no-op.
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const target = path.join(
   __dirname,
