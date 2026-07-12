@@ -6,24 +6,10 @@
 // Docs used to build this: https://github.com/unicity-sphere/sphere-sdk-connect-example
 import { autoConnect } from 'https://esm.sh/@unicitylabs/sphere-sdk@0.11.8/connect/browser';
 
-// Update this if you redeploy the agent under a different Unicity ID.
 const AGENT_NAMETAG = '@buildbot_reekystem';
-
-// The Sphere web wallet, used as the popup fallback when this page isn't
-// already embedded inside Sphere (iframe) and no browser extension is present.
 const WALLET_URL = 'https://sphere.unicity.network';
-
-// testnet2, per the sphere-sdk Connect docs.
 const NETWORK = { id: 4, name: 'testnet2' };
-
-// Least-privilege: only what this dashboard actually needs.
-// - identity:read  -> know who connected, to display it
-// - dm:request     -> let the visitor message the agent
-// - payment:request -> let the visitor ask the agent to pay them
-// Deliberately NOT requested: transfer:request, sign:request, mint:request -
-// this dashboard can never move funds out of the visitor's wallet or sign for them.
 const PERMISSIONS = ['identity:read', 'dm:request', 'payment:request'];
-
 const DAPP_INFO = { name: 'Unicity Autonomous Agent Demo', url: location.origin };
 
 let activeClient = null;
@@ -128,16 +114,27 @@ els.dmForm?.addEventListener('submit', async (e) => {
   }
 });
 
+let uctCoinId = null;
+async function getUctCoinId() {
+  if (uctCoinId) return uctCoinId;
+  const res = await fetch('/api/coin-id/UCT');
+  if (!res.ok) throw new Error('Could not resolve UCT coin ID from the agent backend');
+  const data = await res.json();
+  uctCoinId = data.coinId;
+  return uctCoinId;
+}
+
 els.payForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!activeClient) return;
   els.payResult.textContent = 'Requesting…';
   try {
     const amountUct = Number(els.payAmount.value || 0);
+    const coinId = await getUctCoinId();
     await activeClient.intent('payment_request', {
       to: AGENT_NAMETAG,
       amount: String(Math.round(amountUct * 1_000_000)),
-      coinId: 'UCT',
+      coinId,
       message: 'Requested from the SphereQuests demo dashboard',
     });
     els.payResult.textContent = 'Request sent — the agent auto-accepts requests under its configured limit.';

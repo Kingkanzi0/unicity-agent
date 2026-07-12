@@ -136,6 +136,18 @@ app.get('/api/status', async (req, res) => {
 
 app.get('/api/log', (req, res) => res.json(log));
 
+// The Sphere Connect payment_request intent needs a real coinId (lowercase
+// hex), not a ticker symbol - this resolves it using the same registry our
+// own agent already uses, so the frontend never has to hardcode a coinId.
+app.get('/api/coin-id/:symbol', (req, res) => {
+  try {
+    const coinId = getCoinIdBySymbol(req.params.symbol.toUpperCase());
+    res.json({ symbol: req.params.symbol.toUpperCase(), coinId });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.post('/api/send-dm', async (req, res) => {
   const { recipient, message } = req.body;
   if (!recipient || !message) return res.status(400).json({ error: 'recipient and message required' });
