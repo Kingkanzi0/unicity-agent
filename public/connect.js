@@ -118,7 +118,7 @@ els.dmForm?.addEventListener('submit', async (e) => {
   els.dmResult.textContent = 'Sending…';
   try {
     await activeClient.intent('dm', {
-      recipient: AGENT_NAMETAG,
+      to: AGENT_NAMETAG,
       message: els.dmMessage.value,
     });
     els.dmResult.textContent = 'Sent — the agent should auto-reply shortly.';
@@ -135,7 +135,7 @@ els.payForm?.addEventListener('submit', async (e) => {
   try {
     const amountUct = Number(els.payAmount.value || 0);
     await activeClient.intent('payment_request', {
-      recipient: AGENT_NAMETAG,
+      to: AGENT_NAMETAG,
       amount: String(Math.round(amountUct * 1_000_000)),
       coinId: 'UCT',
       message: 'Requested from the SphereQuests demo dashboard',
