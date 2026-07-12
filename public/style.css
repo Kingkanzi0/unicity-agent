@@ -75,9 +75,50 @@ body {
   white-space: nowrap;
 }
 .wallet-btn:hover { opacity: 0.9; }
+
+/* ---- Mobile ---- */
 @media (max-width: 640px) {
-  .topbar { flex-wrap: wrap; }
+  body { padding: 0 12px 16px; }
+
+  .topbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0 -12px 16px;
+    padding: 12px;
+    gap: 10px;
+  }
   .brand-sub { display: none; }
+  .brand-title { font-size: 14px; }
+  .wallet-widget {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .wallet-status {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    flex: 1 1 auto;
+  }
+  .wallet-btn { flex: none; }
+
+  .card { padding: 14px; margin-bottom: 14px; }
+  h2 { font-size: 15px; }
+
+  button { width: 100%; padding: 12px 16px; font-size: 14px; }
+
+  #status .row { display: flex; flex-direction: column; gap: 2px; }
+  #status .k { width: auto; }
+
+  .log-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .log-row > span,
+  .log-row > div {
+    overflow-wrap: anywhere;
+    white-space: normal !important;
+  }
 }
 .card {
   background: var(--card);
