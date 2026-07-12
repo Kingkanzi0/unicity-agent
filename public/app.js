@@ -11,10 +11,10 @@ async function refreshStatus() {
       .map((a) => `${a.symbol}: ${a.totalAmount}`)
       .join(', ') || 'no assets yet';
     el.innerHTML = `
-      <div class="row"><span class="k">Unicity ID</span> @${data.nametag || '(unclaimed)'}</div>
-      <div class="row"><span class="k">Address</span> ${data.directAddress || '-'}</div>
-      <div class="row"><span class="k">Balances</span> ${assetsHtml}</div>
-      <div class="row"><span class="k">Auto-accept limit</span> ${data.autoAcceptMaxUct} UCT</div>
+      <div class="row"><span class="k">Unicity ID</span><span class="v">@${data.nametag || '(unclaimed)'}</span></div>
+      <div class="row"><span class="k">Address</span><span class="v addr">${data.directAddress || '-'}</span></div>
+      <div class="row"><span class="k">Balances</span><span class="v">${assetsHtml}</span></div>
+      <div class="row"><span class="k">Auto-accept limit</span><span class="v">${data.autoAcceptMaxUct} UCT</span></div>
     `;
   } catch (err) {
     document.getElementById('status').innerHTML = 'Error loading status: ' + err.message;
