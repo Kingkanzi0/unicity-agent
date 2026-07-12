@@ -7,9 +7,18 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🤖 Autonomous Agent Dashboard</h1>
-    <p class="sub">Sphere Quests testnet demo — Autonomous Agents / Payments + Markets / Social + Messaging</p>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">UA</span>
+      <div class="brand-text">
+        <span class="brand-title">Autonomous Agent Dashboard</span>
+        <span class="brand-sub">Sphere Quests — Autonomous Agents · Payments + Markets · Social + Messaging</span>
+      </div>
+    </div>
+    <div class="wallet-widget">
+      <span id="connect-status" class="wallet-status">Checking for a Sphere wallet…</span>
+      <button id="connect-btn" class="wallet-btn">Connect Sphere Wallet</button>
+    </div>
   </header>
 
   <section class="card" id="status-card">
@@ -45,12 +54,10 @@
   <section class="card" id="connect-card">
     <h2>Connect Your Sphere Wallet</h2>
     <p class="hint">
-      Connect your own Sphere wallet to interact with this agent directly — no separate setup needed.
+      Connect your own Sphere wallet (top right) to interact with this agent directly — no separate setup needed.
       Only <code>identity:read</code>, <code>dm:request</code> and <code>payment:request</code> are requested;
       the agent can never move funds out of your wallet or sign anything on your behalf.
     </p>
-    <div id="connect-status">Checking for a Sphere wallet…</div>
-    <button id="connect-btn">Connect Sphere Wallet</button>
 
     <div id="connect-actions" style="display:none; margin-top:16px;">
       <form id="connect-dm-form">
